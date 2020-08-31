@@ -22,8 +22,7 @@
 # All that matters is that your final data is written to an SQLite database
 # called "data.sqlite" in the current working directory which has at least a table
 # called "data".
-import scraperwiki
-import scraperwiki           
+import scraperwiki         
 import lxml.html 
 import uuid
 import datetime
@@ -35,9 +34,13 @@ summary = ""
 
 for asin in ASINS:
     url = "http://www.amazon.com/dp/"+asin
+    print(url)
     html = scraperwiki.scrape(url)
+    print(html)
     root = lxml.html.fromstring(html)
+    print(root)
     for title in root.cssselect("span[id='btAsinTitle']"):  
+        print(title)
         summary += title.text +":  "
         break
     for price in root.cssselect("span[id='actualPriceValue'] b"):
